@@ -49,5 +49,3 @@ jobs:
       run: |
         echo "service name is: ${{ env.SERVICE_NAME }}"
         echo "version is: ${{ env.PACKAGE_VERSION }}"
-
-   
