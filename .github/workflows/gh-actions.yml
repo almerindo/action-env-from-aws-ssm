@@ -2,13 +2,14 @@ name: Using Action almerindo/action-env-from-aws-ssm
 
 on:
   push:
-    branches: [ main]
+    tags:
+      - v1*
 
 jobs:
-  ghAction:
+  v1_1_3:
     runs-on: ubuntu-latest
     steps:
-      - uses: almerindo/action-env-from-aws-ssm@v1.1.0
+      - uses: almerindo/action-env-from-aws-ssm@v1.1.3
         with:
           ssm-path: /whitebeard/action-env-from-aws-ssm
           format: yaml
