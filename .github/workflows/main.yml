@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
-      - uses: almerindo/action-env-from-aws-ssm@v1.1.3
+      - uses: almerindo/action-env-from-aws-ssm@v1.2.0
         with:
           ssm-path: /whitebeard/action-env-from-aws-ssm
           format: yaml
