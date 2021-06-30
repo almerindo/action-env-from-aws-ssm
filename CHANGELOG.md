@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.1.3...v1.1.4) (2021-06-30)
+
+
+### Bug Fixes
+
+* fixes version github actions ([c8b0586](https://github.com/almerindo/action-env-from-aws-ssm/commit/c8b0586ae04da3a9d85ad2fa980f4927cc8c82c6))
+
 ## [1.1.3](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.1.2...v1.1.3) (2021-06-30)
 
 
