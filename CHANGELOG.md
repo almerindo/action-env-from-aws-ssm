@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.1.5...v1.2.0) (2021-06-30)
+
+
+### Features
+
+* new workflow ([d7e7f9a](https://github.com/almerindo/action-env-from-aws-ssm/commit/d7e7f9a3ba54d463e791e03a7fd3aac07f720e89))
+
 ## [1.1.5](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.1.4...v1.1.5) (2021-06-30)
 
 
