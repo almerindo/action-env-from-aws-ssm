@@ -8,7 +8,7 @@ jobs:
   ghAction:
     runs-on: ubuntu-latest
     steps:
-      - uses: almerindo/action-env-from-aws-ssm
+      - uses: almerindo/action-env-from-aws-ssm@v1.1.0
         with:
           ssm-path: /whitebeard/action-env-from-aws-ssm
           format: yaml
