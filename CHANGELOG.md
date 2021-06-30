@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.2.0...v1.2.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* changing the branding ([555bfe7](https://github.com/almerindo/action-env-from-aws-ssm/commit/555bfe7d5dcb08624416611d60f0744cee413caa))
+
 # [1.2.0](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.1.5...v1.2.0) (2021-06-30)
 
 
