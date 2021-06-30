@@ -1,0 +1,53 @@
+name: Workflow Main - On Push
+
+on:
+  push:
+    branches: [ main]
+
+jobs:
+  
+  setup:
+    name: preparing
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    strategy:
+      matrix:   
+        node-version: [14.16.1]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}    
+
+    - name: install packages using yarn.lock
+      run: |
+        echo "REPO_NAME: ${{ env.REPO_NAME }}"
+        yarn --frozen-lockfile
+    
+    - name: Release
+      run: |
+        yarn release 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Getting SERVICE_NAME from package.json
+      id: getting_serviceName
+      run: |
+        export SERVICE_NAME=`node -p -e "require('./package.json').name"`; echo SERVICE_NAME=$SERVICE_NAME >> $GITHUB_ENV
+
+    - name: Getting version from package.json
+      id: getting_version
+      run: |
+        export PACKAGE_VERSION=`node -p -e "require('./package.json').version"`; echo PACKAGE_VERSION=$PACKAGE_VERSION >> $GITHUB_ENV
+
+    - name: Using SERVICE_NAME and Version updated
+      id: using_version
+      run: |
+        echo "service name is: ${{ env.SERVICE_NAME }}"
+        echo "version is: ${{ env.PACKAGE_VERSION }}"
+
+   
