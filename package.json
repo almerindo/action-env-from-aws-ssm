@@ -1,0 +1,43 @@
+{
+  "name": "action-aws-ssm-to-dotenv",
+  "version": "1.3.1",
+  "description": "create `.env` with AWS SSM parameters path",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/almerindo/action-env-from-aws-ssm.git"
+  },
+  "keywords": [
+    "github",
+    "action",
+    "aws",
+    "ssm",
+    "parameters",
+    "env",
+    "dotenv",
+    ".env"
+  ],
+  "author": "Almerindo Rehem <almerindo.rehem@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/almerindo/action-env-from-aws-ssm.git/issues"
+  },
+  "homepage": "https://github.com/almerindo/action-env-from-aws-ssm.git#readme",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "aws-sdk": "^2.533.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.14.18",
+    "husky": "^3.0.5",
+    "typescript": "^3.6.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc && git add lib"
+    }
+  }
+}
