@@ -2,8 +2,8 @@ name: 'Creates .env from AWS SSM '
 description: 'Creates a`.env` file from AWS SSM Parameters'
 author: 'Almerindo Rehem <almerindo.rehem@gmail>'
 branding:
-  icon: 'lock'
-  color: 'yellow'
+  icon: 'cloud'
+  color: 'green'
 inputs:
   ssm-path:
     description: 'required. AWS SSM path for parameters eg. `/ssm/parameter`'
