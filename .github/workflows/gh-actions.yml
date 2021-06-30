@@ -2,11 +2,10 @@ name: Using Action almerindo/action-env-from-aws-ssm
 
 on:
   push:
-    tags:
-      - v1*
+    branches: [ main]
 
 jobs:
-  v1_1_3:
+  ghAction:
     runs-on: ubuntu-latest
     steps:
       - uses: almerindo/action-env-from-aws-ssm@v1.1.3
