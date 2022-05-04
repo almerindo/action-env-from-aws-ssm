@@ -1,3 +1,18 @@
+# [1.3.0](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.2.1...v1.3.0) (2022-05-04)
+
+
+### Bug Fixes
+
+* add configmap as a string ([961b713](https://github.com/almerindo/action-env-from-aws-ssm/commit/961b713648b1a4f11025c021f3524dbf79886f03))
+* configmap header ([9c1143a](https://github.com/almerindo/action-env-from-aws-ssm/commit/9c1143adfd68e946d7f478b28f9b2c5cb4f801ea))
+* fix the configmap format to be a string ([0aea4f6](https://github.com/almerindo/action-env-from-aws-ssm/commit/0aea4f6f4dc00762c7e4bd1f8c6fc64a841581d7))
+
+
+### Features
+
+* add configmap yaml transformer ([8e752a2](https://github.com/almerindo/action-env-from-aws-ssm/commit/8e752a23ee730c8f60ff3044716cb110a4ee0787))
+* rebuild the package ([6eefed6](https://github.com/almerindo/action-env-from-aws-ssm/commit/6eefed66d233986bcb44c981f40d38ad1b0a74f1))
+
 ## [1.2.1](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.2.0...v1.2.1) (2021-06-30)
 
 
