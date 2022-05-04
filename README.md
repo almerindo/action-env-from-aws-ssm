@@ -35,6 +35,18 @@ optional, default=dotenv
 - dotenv: KEY="value" (default)
 - shell: export KEY="value"
 - yaml: KEY: "value"
+- configmap: like the yaml formatter (KEY: "value")
+example:
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${KUBE_NAME}
+  namespace: ${KUBE_NAME}-env-cm
+data:
+  NEW_RELIC_ENABLED: false
+  NODE_ENV: STAGE
+```
 
 ### output(default `.env`)
 

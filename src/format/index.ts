@@ -1,8 +1,9 @@
 import {formatShell} from './shell'
 import {formatDotenv} from './dotenv'
 import {formatYaml} from './yaml'
+import { formatConfigmap } from './configmap'
 
-export function formatter(type: 'shell' | 'dotenv' | 'yaml' | string) {
+export function formatter(type: 'shell' | 'dotenv' | 'yaml' | 'configmap' | string) {
   if (type === 'shell') {
     return formatShell
   }
@@ -11,6 +12,9 @@ export function formatter(type: 'shell' | 'dotenv' | 'yaml' | string) {
   }
   if (type === 'yaml') {
     return formatYaml
+  }
+  if (type === 'configmap') {
+    return formatConfigmap
   }
   return _ => _
 }

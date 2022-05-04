@@ -3,6 +3,7 @@ import * as AWS from 'aws-sdk'
 import {formatter} from './format'
 import {appendFileSync, existsSync, writeFileSync} from 'fs'
 import {GetParametersByPathResult, Parameter} from 'aws-sdk/clients/ssm'
+import { yaml2ConfigMap } from './format/configmap'
 
 async function run() {
   const region = process.env.AWS_DEFAULT_REGION
@@ -44,12 +45,18 @@ async function run() {
         envs.push('\n')
       }
 
+      let content = envs.join('\n');
+
+      if (format === "configmap") {
+        content = yaml2ConfigMap(envs)
+      }
+
       if (existsSync(output)) {
         console.log(`append to ${output} file`)
-        appendFileSync(output, '\n' + envs.join('\n'))
+        appendFileSync(output, '\n' + content)
       } else {
         console.log(`create ${output} file`)
-        writeFileSync(output, envs.join('\n'))
+        writeFileSync(output, content)
       }
     } catch (e) {
       core.error(e)
