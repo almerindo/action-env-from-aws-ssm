@@ -1,5 +1,5 @@
 export const formatConfigmap = (prefix = '') =>
-({Name, Value}) => `${prefix}${Name}: ${Value}`
+({Name, Value}) => `${prefix}${Name}: "${Value}"`
 
 export const yaml2ConfigMap = (content) =>{
   
