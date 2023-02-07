@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.3.0...v1.4.0) (2023-02-07)
+
+
+### Features
+
+* upgrade from node12 to node16 ([62d0dd4](https://github.com/almerindo/action-env-from-aws-ssm/commit/62d0dd4495f37cd4d5edcfe500d2f2f60dca5dbb))
+
 # [1.3.0](https://github.com/almerindo/action-env-from-aws-ssm/compare/v1.2.1...v1.3.0) (2022-05-04)
 
 
