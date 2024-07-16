@@ -14,10 +14,10 @@ jobs:
         node-version: [20.13.1]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -48,17 +48,3 @@ jobs:
         run: |
           echo "service name is: ${{ env.SERVICE_NAME }}"
           echo "version is: ${{ env.PACKAGE_VERSION }}"
-
-  ghAction:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - uses: almerindo/action-env-from-aws-ssm@v1.2.0
-        with:
-          ssm-path: /whitebeard/action-env-from-aws-ssm
-          format: yaml
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
-      - run: cat .env
