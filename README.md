@@ -1,3 +1,5 @@
+<a href="https://www.buymeacoffee.com/almerindo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 # action aws ssm to dotenv
 
 ![](https://github.com/almerindo/action-env-from-aws-ssm/workflows/v1/badge.svg)
