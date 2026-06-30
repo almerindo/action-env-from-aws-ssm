@@ -1,2 +1,4 @@
+import {FormattedParameter} from './configmap'
+
 export const formatShell = (prefix = '') =>
-  ({Name, Value}) => `export ${prefix}${Name}=${Value}`
+  ({Name, Value}: FormattedParameter) => `export ${prefix}${Name}=${Value}`

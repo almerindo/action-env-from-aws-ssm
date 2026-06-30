@@ -26,6 +26,11 @@ jobs:
           echo "REPO_NAME: ${{ env.REPO_NAME }}"
           yarn --frozen-lockfile
 
+      - name: Build and package action
+        run: |
+          yarn build
+          yarn package
+
       - name: Release
         run: |
           yarn release
