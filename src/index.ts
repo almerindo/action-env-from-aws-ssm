@@ -1,53 +1,63 @@
 import * as core from '@actions/core'
-import * as AWS from 'aws-sdk'
-import {formatter} from './format'
+import {
+  GetParametersByPathCommand,
+  Parameter,
+  SSMClient,
+} from '@aws-sdk/client-ssm'
 import {appendFileSync, existsSync, writeFileSync} from 'fs'
-import {GetParametersByPathResult, Parameter} from 'aws-sdk/clients/ssm'
-import { yaml2ConfigMap } from './format/configmap'
+import {formatter, FormattedParameter} from './format'
+import {yaml2ConfigMap} from './format/configmap'
+
+type SsmParameter = Pick<Parameter, 'Name' | 'Value'>
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error)
+}
 
 async function run() {
   const region = process.env.AWS_DEFAULT_REGION
-  const ssm = new AWS.SSM({region})
+  const ssm = new SSMClient({region})
 
   try {
     const ssmPath = core.getInput('ssm-path', {required: true})
     const format = core.getInput('format', {required: true})
     const output = core.getInput('output', {required: true})
     const prefix = core.getInput('prefix')
-    const allParameters: Parameter[] = []
+    const allParameters: SsmParameter[] = []
     const withDecryption = core.getInput('decryption') === 'true'
-    let nextToken: string
+    let nextToken: string | undefined
 
     try {
       do {
-        const result: GetParametersByPathResult = await ssm
-          .getParametersByPath({
+        const result = await ssm.send(
+          new GetParametersByPathCommand({
             WithDecryption: withDecryption,
-            Path          : ssmPath,
-            Recursive     : true,
-            NextToken     : nextToken,
-          })
-          .promise()
+            Path: ssmPath,
+            Recursive: true,
+            NextToken: nextToken,
+          }),
+        )
 
-        core.debug(`parameters length: ${result.Parameters.length}`)
+        core.debug(`parameters length: ${result.Parameters?.length ?? 0}`)
         nextToken = result.NextToken
-        allParameters.push(...result.Parameters)
+        if (result.Parameters) {
+          allParameters.push(...result.Parameters)
+        }
       } while (nextToken)
 
-
       const envs = allParameters
-        .map<Parameter>(p => ({
+        .map<FormattedParameter>(p => ({
           Value: p.Value,
-          Name : p.Name.split('/').pop(),
+          Name: p.Name?.split('/').pop() ?? '',
         }))
-        .map<string>(formatter(format)(prefix))
+        .map<string>(formatter(format, prefix))
       if (envs.length > 0) {
         envs.push('\n')
       }
 
-      let content = envs.join('\n');
+      let content = envs.join('\n')
 
-      if (format === "configmap") {
+      if (format === 'configmap') {
         content = yaml2ConfigMap(envs)
       }
 
@@ -58,12 +68,12 @@ async function run() {
         console.log(`create ${output} file`)
         writeFileSync(output, content)
       }
-    } catch (e) {
-      core.error(e)
-      core.setFailed(e.message)
+    } catch (error) {
+      core.error(getErrorMessage(error))
+      core.setFailed(getErrorMessage(error))
     }
-  } catch (e) {
-    core.setFailed(e.message)
+  } catch (error) {
+    core.setFailed(getErrorMessage(error))
   }
 }
 

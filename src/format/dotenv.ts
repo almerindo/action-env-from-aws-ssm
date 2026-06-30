@@ -1,2 +1,4 @@
+import {FormattedParameter} from './configmap'
+
 export const formatDotenv = (prefix = '') =>
-  ({Name, Value}) => `${prefix}${Name}=${Value}`
+  ({Name, Value}: FormattedParameter) => `${prefix}${Name}=${Value}`

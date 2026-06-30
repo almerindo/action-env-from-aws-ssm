@@ -11,7 +11,7 @@ jobs:
     continue-on-error: false
     strategy:
       matrix:
-        node-version: [20.13.1]
+        node-version: [24]
 
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +25,11 @@ jobs:
         run: |
           echo "REPO_NAME: ${{ env.REPO_NAME }}"
           yarn --frozen-lockfile
+
+      - name: Build and package action
+        run: |
+          yarn build
+          yarn package
 
       - name: Release
         run: |
